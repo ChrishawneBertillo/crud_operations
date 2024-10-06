@@ -1,0 +1,31 @@
+
+{% extends 'app/base.html' %} 
+
+{% load static %}
+{% include 'app/navbar.html'%} 
+
+{% block content %}
+
+<div class="about-section">
+    <div class="about-header">
+      <h1>About Us</h1>
+      <p class="about-description">Coffee is a beloved beverage enjoyed by millions worldwide for its bold flavor, rich aroma, and comforting warmth.</p>
+    </div>
+    
+    <div class="about-container">
+      <div class="about-image">
+        <img src="{% static 'images/image1.jpg' %}" alt="Coffee Cup">
+      </div>
+      <div class="about-info">
+        <div class="about-details">
+          <h3>Warm embrace in a cup</h3>
+          <p class="about-text">Coffee, the beloved beverage enjoyed by millions worldwide, is known for its bold flavor, rich aroma, and ability to provide a comforting warmth in every sip. It's often considered an essential morning pick-me-up but can be enjoyed at any time of day. Whether sipping alone or with company, coffee provides the perfect accompaniment to conversation and socializing.</p>
+          <button class="read-more-btn">Read More</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+{% endblock %}

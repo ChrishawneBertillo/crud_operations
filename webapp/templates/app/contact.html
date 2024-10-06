@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %} 
+
+{% load static %}
+{% include 'app/navbar.html'%}
+
+{% block content %}
+
+<div class="contact-container">  
+    <form id="contact" action="" method="post">
+      <h3>Quick Contact</h3>
+      <h4>Contact us today, and get a reply within 24 hours!</h4>
+      <fieldset class="contact-fieldset">
+        <input class="contact-input" placeholder="Your name" type="text" tabindex="1" required autofocus>
+      </fieldset>
+      <fieldset class="contact-fieldset">
+        <input class="contact-input" placeholder="Your Email Address" type="email" tabindex="2" required>
+      </fieldset>
+      <fieldset class="contact-fieldset">
+        <input class="contact-input" placeholder="Your Phone Number" type="tel" tabindex="3" required>
+      </fieldset>
+      <fieldset class="contact-fieldset">
+        <input class="contact-input" placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
+      </fieldset>
+      <fieldset class="contact-fieldset">
+        <textarea class="contact-textarea" placeholder="Type your Message Here...." tabindex="5" required></textarea>
+      </fieldset>
+      <fieldset class="contact-fieldset">
+        <button class="contact-submit" name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+{% endblock %}  
