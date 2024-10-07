@@ -12,4 +12,7 @@ class AboutPageView(TemplateView):
 class ContactPageView(TemplateView):
     template_name = 'app/contact.html' 
 
+class CrudPageView(TemplateView):
+    template_name = 'app/crud.html' 
+
 

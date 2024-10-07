@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %} 
+
+{% load static %}
+{% include 'app/navbar.html'%} 
+
+{% block content %}
+    <div class="crud-section"> <!-- Wrap the CRUD content -->
+        <div class="crud-container">
+          
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John</td>
+                        <td>john@example.com</td>
+                        <td>(555) 555-1234</td>
+                        <td>
+                            <a href="#" class="edit"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Mary</td>
+                        <td>mary@example.com</td>
+                        <td>(555) 555-4321</td>
+                        <td>
+                            <a href="#" class="edit"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="#" class="delete"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    {% endblock %}
