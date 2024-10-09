@@ -12,7 +12,11 @@ class AboutPageView(TemplateView):
 class ContactPageView(TemplateView):
     template_name = 'app/contact.html' 
 
-class CrudPageView(TemplateView):
+class CrudPageView(TemplateView): 
     template_name = 'app/crud.html' 
+
+
+class ListPageView(TemplateView): 
+    template_name = 'app/list.html' 
 
 

@@ -15,19 +15,13 @@
 
 </head>
 <body>
-   
-    {% comment %} <header>
-        
-        <a href = "{% url 'about' %}" > About </a>
-        
-    </header>
-  {% endcomment %}
+
     {% include 'app/navbar.html'%}
     {% block content%} 
 
     {% endblock %} 
 
 
-
+    <script src = "{% static 'js/base.js'%}"> </script> 
 </body>
 </html>
