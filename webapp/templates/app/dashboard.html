@@ -1,0 +1,39 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+<div class="dashboard-container">
+    <div class="dashboard-header">Dashboard</div>
+
+    <div class="dashboard-row">
+        <a href="#" class="dashboard-card dashboard-blue">
+            <h1>2558</h1>
+            <p>Total Available Bikes</p>
+            
+        </a>
+
+        <a href="{% url 'pending' %}" class="dashboard-card dashboard-green">
+            <h1>18</h1>
+            <p>Pending Requests</p>
+          
+        </a>
+
+        <a href="{% url 'approved' %}" class="dashboard-card dashboard-pink">
+            <h1>7</h1>
+            <p>Active Rentals</p>
+            
+        </a>
+
+        <a href="{% url 'completed' %}" class="dashboard-card dashboard-red">
+            <h1>90</h1>
+            <p>Completed Rentals</p>
+         
+        </a>
+    </div>
+</div>
+
+{% endblock %}

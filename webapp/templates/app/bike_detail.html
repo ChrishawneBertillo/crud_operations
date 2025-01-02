@@ -1,0 +1,55 @@
+
+
+{% extends 'app/base.html' %} 
+
+{% load static %}
+
+{% block content %} 
+<div class="bike-detail-container">
+    <!-- Bike Details Section -->
+    <div class="bike-detail-header">
+        <h1>{{ bike.name }}</h1>
+        {% if bike.image %}
+        <img src="{{ bike.image.url }}" alt="{{ bike.name }}" class="bike-detail-image">
+        {% else %}
+        <p>No image available</p>
+        {% endif %}
+    </div>
+    <div class="bike-detail-info">
+        <p><strong>Details:</strong> {{ bike.details }}</p>
+        <p><strong>Price per day:</strong> ${{ bike.price_per_day }}</p>
+        <p><strong>Availability:</strong> {{ bike.availability|yesno:"Available,Not Available" }}</p>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="bike-detail-comments">
+        <h2>Comments</h2>
+        {% if comments %}
+        <ul>
+            {% for comment in comments %}
+            <li>
+                <strong>{{ comment.user.username }}</strong>: {{ comment.text }}
+                <small>Posted on {{ comment.created_at|date:"F j, Y, g:i a" }}</small>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>No comments yet. Be the first to comment!</p>
+        {% endif %}
+    </div>
+
+    <!-- Comment Form -->
+    {% if user.is_authenticated %}
+    <div class="bike-detail-form">
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <button type="submit" style="display: none;">Add Comment</button>
+        </form>
+    </div>
+    {% else %}
+    <p class="bike-detail-login-reminder">You must be logged in to leave a comment.</p>
+    {% endif %}
+</div>
+{% endblock content %}

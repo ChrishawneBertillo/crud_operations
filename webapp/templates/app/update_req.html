@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="login-container">
+    <form method="POST">
+        {% csrf_token %}
+        <h1>Edit Booking</h1>
+        <div class="form-group">
+            <input type="text" name="customer_name" class="form-input" placeholder="Enter customer name" value="{{ form.customer_name.value }}" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="phone_number" class="form-input" placeholder="Enter customer phone number" value="{{ form.phone_number.value }}" required>
+        </div>
+        <div class="form-group">
+            <select name="bike" class="form-input" required>
+                <option value="">Select Bike</option>
+                {% for bike in bikes %}
+                    <option value="{{ bike.id }}" {% if bike.id == form.bike.value %} selected {% endif %}>{{ bike.name }} ({{ bike.model_year }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="number" name="days_booked" class="form-input" placeholder="Number of days" value="{{ form.days_booked.value }}" required>
+        </div>
+        <button type="submit" class="form-submit">Update Booking</button>
+    </form>
+</div>
+
+
+{% endblock content %}

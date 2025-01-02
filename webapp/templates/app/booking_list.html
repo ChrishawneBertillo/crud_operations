@@ -1,0 +1,35 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'app/navbar-dashboard.html' %}
+
+<div class="crud-section">
+    <div class="crud-container">
+        <header>
+            <h2>
+                {% if current_page == 'pending' %}
+                    Pending Requests
+                {% elif current_page == 'approved' %}
+                    Approved Requests
+                {% elif current_page == 'completed' %}
+                    Completed Requests
+                {% endif %}
+            </h2>
+            <div class="search-bar">
+                <input type="text" id="searchTable" placeholder="Search..." onkeyup="filterTable('bookingTable', 'searchTable')">
+            </div>
+        </header>
+
+        {% if current_page == 'pending' %}
+            {% include 'app/pending_table.html' %}
+        {% elif current_page == 'approved' %}
+            {% include 'app/approved_table.html' %}
+        {% elif current_page == 'completed' %}
+            {% include 'app/completed_table.html' %}
+        {% endif %}
+
+    </div>
+</div>
+{% endblock content %}

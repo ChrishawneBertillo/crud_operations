@@ -1,0 +1,71 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+
+
+{% block content %}
+
+{% include 'app/navbar-dashboard.html' %}
+
+
+<div class="top-right-button-container">
+    <button class="top-right-button" ><a href="{% url 'create_req' %}"> + New Request </a></button>
+</div>
+<div class="crud-section">
+    <div class="crud-container">
+        <header>
+            <h2>Pending Requests</h2>
+            <div class="search-bar">
+                <input type="text" id="searchPending" placeholder="Search Pending..." onkeyup="filterTable('pendingTable', 'searchPending')">
+            </div>
+        </header>
+        <table id="pendingTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Phone</th>
+                    <th>Date</th>
+                    <th>Bike Model</th>
+                    <th>Days Booked</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in requests %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ booking.customer }}</td>
+                        <td>{{ booking.customer.phone_number }}</td>
+                        <td>{{ booking.booking_date }}</td>
+                        <td>{{ booking.bike }}</td> 
+                        <td>{{ booking.days_booked }}</td>       
+                        <td>${{ booking.total_price }}</td>
+                        <td>
+                     
+                            <form action="{% url 'approve_req' pk=booking.pk %}" method="POST" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="approve" style="background: none; border: none; cursor: pointer;">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </form>
+
+                            <a href="{% url 'update_req' pk=booking.pk %}" class="edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'delete_req' pk=booking.pk %}" class="delete">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock content %}

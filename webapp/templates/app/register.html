@@ -1,0 +1,51 @@
+
+{% extends 'app/base.html' %} 
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="registration-container">
+    <form method="POST" id="registrationForm" action="{% url 'Logout' %}">
+        {% csrf_token %}
+        <h1>Register</h1>
+
+        <div class="registration-form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" class="registration-input" placeholder="Choose a username" required>
+        </div>
+
+        <div class="registration-form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" class="registration-input" placeholder="Enter your email" required>
+        </div>
+
+        <div class="registration-form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" class="registration-input" placeholder="Create a password" required>
+        </div>
+
+        <div class="registration-form-group">
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password" id="confirm_password" class="registration-input" placeholder="Confirm your password" required>
+        </div>
+
+        <button type="submit" class="registration-submit">Register</button>
+
+        <div class="registration-footer">
+            <a href="{% url 'signIn' %}">Already have an account? Login</a>
+        </div>
+
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li class="error">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </form>
+</div>
+
+
+{% endblock content %}

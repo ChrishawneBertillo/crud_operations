@@ -1,21 +1,36 @@
-<!-- navbar.html -->
-<!-- Start Navbar -->
- {%load static%}
-<div class = "landing-page"> 
-<header>
+<div class="landing-page"> 
+  <header>
     <div class="container">
-      <a href="#" class="logo">Chris <b>ss</b></a>
+      <a href="{% url 'home' %}" class="logo">RentRide <b>CRM</b></a>
       <ul class="links">
-        <li><a href = "{% url 'home' %}" > Home </a></li>
-        <li><a href = "{% url 'about' %}" > About </a></li>
-        <li><a href = "{% url 'contact' %}" > Contact </a></li>
-        <!-- <li><a href = "{% url 'list' %}" > List of Books </a></li> -->
-        <li class = "li-admin"><a href = "{% url 'crud' %}" > <i class="fa fa-user-circle" aria-hidden="true"></i></a></li>
-      <li> </li>
+        <li><a href="{% url 'home' %}" class="navs">Home</a></li>
+        <li><a href="{% url 'about' %}" class="navs">About</a></li>
+        <li><a href="{% url 'list' %}" class="navs">Browse Bikes</a></li>
+        <li><a href="{% url 'contact' %}" class="navs">Contact</a></li>
+     
+        {% if user.is_authenticated %}
+            {% if user.is_staff %}
+                <!-- Show admin panel link only if the user is an admin -->
+                <li><a href="{% url 'crud' %}" class="navs">Dashboard</a></li>
+            {% endif %}
+            <li>
+              <form method="POST" action="{% url 'Logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="button9" >Sign Out</button>
+              </form>
+            </li>
+        {% else %}
+            <li>
+              <a href="{% url 'signIn' %}" class="navs-button">
+                <button class="button2">Sign In</button>
+              </a>
+            </li>
+        {% endif %}
+        <li></li>
       </ul>
+      {% if user.is_authenticated %}
+        <div class="welcome-message">Hello <span> {{ user.username }} </span>! </div> <!-- Moved outside for separate styling -->
+      {% endif %}
     </div>
   </header>
-
 </div>
-  <!-- End Navbar -->
-  

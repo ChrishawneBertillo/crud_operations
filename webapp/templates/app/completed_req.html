@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+{% include 'app/navbar-dashboard.html' %}
+<div class="crud-section">
+    <div class="crud-container">
+        <header>
+            <h2>Completed Rentals</h2>
+            <div class="search-bar">
+                <input type="text" id="searchApproved" placeholder="Search Approved..." onkeyup="filterTable('approvedTable', 'searchApproved')">
+            </div>
+        </header>
+        <table id="approvedTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Phone</th>
+                    <th>Rent Date</th>
+                    <th>Due Date</th>
+                    <th>Bike Model</th>
+                    <th>Bike Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="completed-tbody">
+                {% for booking in requests %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ booking.customer.customer_name }}</td>
+                        <td>{{ booking.customer.phone_number }}</td>
+                        <td>{{ booking.booking_date }}</td>
+                        <td>{{ booking.due_date }}</td>
+                        <td>{{ booking.bike }}</td>
+                        <td>${{ booking.total_price }}</td>
+                        <td>
+                            <a href="{% url 'delete_req' pk=booking.pk %}?redirect=completed" class="delete" id="completed-delete">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

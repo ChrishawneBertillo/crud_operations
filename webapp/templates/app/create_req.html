@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="login-container">
+    <form method="POST" id="createBookingForm">
+        {% csrf_token %}
+        <h1>Create Booking</h1>
+        <div class="form-group">
+            <input type="text" name="customer_name" id="customer_name" class="form-input" placeholder="Enter customer name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" name="phone_number" id="phone_number" class="form-input" placeholder="Enter customer phone number" required>
+        </div>
+        <div class="form-group">
+            <select name="bike" id="bike" class="form-input" required>
+                <option value="">Select Bike</option>
+                {% for bike in bikes %}
+                    <option value="{{ bike.id }}">{{ bike.name }} ({{ bike.model_year }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="number" name="days_booked" id="days_booked" class="form-input" placeholder="Number of days" required>
+        </div>
+        <button type="submit" class="form-submit">Create Booking</button>
+    </form>
+</div>
+{% endblock content %}

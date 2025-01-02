@@ -1,0 +1,81 @@
+{% extends 'app/base.html' %} 
+
+{% load static %}
+{% block content %}
+
+
+<div class="custom-card-wrapper">
+    <div class="custom-card-container">
+      
+      <!-- Card 1 -->
+
+      {% for bike in bikes %}
+      <div class="custom-card">
+        <div>
+            <a href="{% url 'bike_detail'  bike.pk %}" class="view-bike"><i class="fa-solid fa-question"></i></a>
+        </div>
+          {% if bike.image %}
+              <img src="{{ bike.image.url }}" alt="{{ bike.name }}" class="custom-card-image">
+          {% else %}
+              <p>No image available</p>
+          {% endif %}
+          <div class="custom-card-content">
+              <h3>{{ bike.name }}</h3>
+              <p>{{ bike.details }}</p>
+              <div class="custom-card-footer">
+                  <div class="card-info">
+                      <span class="price">${{ bike.price_per_day }} / day</span>
+                      <span class="rating">★★★★☆</span>
+                  </div>
+                  <div class="card-button">
+                      <button onclick="handleBookNow('{{ bike.name }}')" class="button1">Book Now!</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  {% endfor %}
+  {% if user.is_staff %}
+  <div class="custom-card create-new-card"> 
+    <img src="{%static 'images/plus.png' %}" class = "card-plus"> 
+  </div>
+  {% endif %}
+
+
+
+    </div>
+  </div>
+  
+
+<!-- Existing Modal for Booking Confirmation -->
+<div id="bookingModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-modal-close" onclick="closeModal()">&times;</span>
+        <h2>Booking Confirmation</h2>
+        <p id="bookingMessage"></p>
+        <p>Are you sure you want to book this bike?</p>
+        <div>
+            <button id="confirmButton" class="button3" onclick="confirmBooking()">Yes, Confirm</button>
+            <button class="button3" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>  
+</div>
+
+<!-- New Modal for Unauthenticated Users -->
+<div id="authModal" class="custom-modal">
+    <div class="custom-modal-content">
+        <span class="custom-modal-close" onclick="closeAuthModal()">&times;</span>
+        <h2>Authentication Required</h2>
+        <p id="authMessage">You need to log in to book a bike.</p>
+        <div>
+            <button class="button3" onclick="closeAuthModal()">Close</button>
+            <a href="{% url 'signIn' %}"> <button class="button3" onclick="redirectToSignIn()">Sign In</button></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    var isAuthenticated = '{{ user.is_authenticated|yesno:"true,false" }}';
+</script>
+
+
+{% endblock content %}

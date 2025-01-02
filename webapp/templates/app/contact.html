@@ -1,32 +1,44 @@
 {% extends 'app/base.html' %} 
 
 {% load static %}
-{% include 'app/navbar.html'%}
 
 {% block content %}
 
-<div class="contact-container">  
-    <form id="contact" action="" method="post">
-      <h1>Quick Contact</h1> 
-      <h4>Contact us today, and get a reply within 24 hours!</h4>
-      <fieldset class="contact-fieldset">
-        <input class="contact-input" placeholder="Your name" type="text" tabindex="1" required autofocus>
-      </fieldset>
-      <fieldset class="contact-fieldset">
-        <input class="contact-input" placeholder="Your Email Address" type="email" tabindex="2" required>
-      </fieldset>
-      <fieldset class="contact-fieldset">
-        <input class="contact-input" placeholder="Your Phone Number" type="tel" tabindex="3" required>
-      </fieldset>
-      <fieldset class="contact-fieldset">
-        <input class="contact-input" placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
-      </fieldset>
-      <fieldset class="contact-fieldset">
-        <textarea class="contact-textarea" placeholder="Type your Message Here...." tabindex="5" required></textarea>
-      </fieldset>
-      <fieldset class="contact-fieldset">
-        <button class = "land-button"  name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="alertButton()">Submit</button>
-      </fieldset>
-    </form>
-  </div>
+<div class="registration-container">
+  <form id="contact" action="" method="post">
+      <h1 class="contact-title">Quick Contact</h1>
+      <h4 class="contact-subtitle">Contact us today, and get a reply within 24 hours!</h4>
+
+      <div class="registration-form-group">
+          <label for="name">Your Name:</label>
+          <input class="registration-input" id="name" placeholder="Your name" type="text" tabindex="1" required autofocus>
+      </div>
+
+      <div class="registration-form-group">
+          <label for="email">Your Email Address:</label>
+          <input class="registration-input" id="email" placeholder="Your Email Address" type="email" tabindex="2" required>
+      </div>
+
+      <div class="registration-form-group">
+          <label for="phone">Your Phone Number:</label>
+          <input class="registration-input" id="phone" placeholder="Your Phone Number" type="tel" tabindex="3" required>
+      </div>
+
+      <div class="registration-form-group">
+          <label for="website">Your Website:</label>
+          <input class="registration-input" id="website" placeholder="Your Web Site starts with http://" type="url" tabindex="4" required>
+      </div>
+
+      <div class="registration-form-group">
+          <label for="message">Your Message:</label>
+          <textarea class="registration-textarea" id="message" placeholder="Type your Message Here...." tabindex="5" required></textarea>
+      </div>
+
+      <div class="registration-footer">
+          <button class="registration-submit" name="submit" type="submit" id="contact-submit" data-submit="...Sending" onclick="alertButton()">Submit</button>
+      </div>
+  </form>
+</div>
+
+
 {% endblock %}  
